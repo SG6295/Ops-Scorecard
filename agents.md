@@ -44,6 +44,9 @@ Do NOT jump between layers. Complete Layer 1 before starting Layer 2.
 - When the user says "push to git", it means: review local changes, propose a commit message, commit, then push to the default remote/branch unless otherwise specified.
 - If the user provides a commit message, use it as-is.
 
+### Rule 1.6: Edge Function Deployment
+- When new Supabase Edge Functions are created or updated, deploy them via CLI without asking each time.
+
 ### Rule 2: Script-Based Table Creation
 When the user provides data (e.g., "Jan data"), follow this flow:
 1. User uploads/provides raw data

@@ -1,0 +1,41 @@
+export const requiredDieselHeaders = [
+  'Vehicle Number',
+  'Vehicle Number with spaces',
+  'Site Name',
+  'Make',
+  'Seating Capacity',
+  'Wheel Base',
+  'Last Filing Date',
+  '1st Filing KM/ PREVIOUS KM',
+  'Last Filling KM',
+  'TOTAL KM',
+  'DIESEL IN LITRES',
+  'Amount',
+  'MIlage',
+  'Ideal Mileage',
+  'Difference',
+  'Diff %',
+  'Deductions',
+  'Accounts Remarks'
+];
+
+export const dieselColumnMap: Record<string, string> = {
+  'Vehicle Number': 'vehicle_number',
+  'Vehicle Number with spaces': 'vehicle_number_with_spaces',
+  'Site Name': 'site_name',
+  Make: 'make',
+  'Seating Capacity': 'seating_capacity',
+  'Wheel Base': 'wheel_base',
+  'Last Filing Date': 'last_filing_date',
+  '1st Filing KM/ PREVIOUS KM': 'first_filing_km',
+  'Last Filling KM': 'last_filling_km',
+  'TOTAL KM': 'total_km',
+  'DIESEL IN LITRES': 'diesel_in_litres',
+  Amount: 'amount',
+  MIlage: 'mileage',
+  'Ideal Mileage': 'ideal_mileage',
+  Difference: 'difference',
+  'Diff %': 'diff_pct',
+  Deductions: 'deductions',
+  'Accounts Remarks': 'accounts_remarks'
+};
