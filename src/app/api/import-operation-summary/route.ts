@@ -124,7 +124,7 @@ export async function POST(request: Request) {
     const parsed = Papa.parse(csvText, {
       header: true,
       skipEmptyLines: true
-    }) as Papa.ParseResult<Record<string, string>>;
+    }) as unknown as { data: Record<string, string>[]; errors: { message: string }[]; meta: { fields?: string[] } };
 
     if (parsed.errors.length) {
       return NextResponse.json({ error: `CSV parse error: ${parsed.errors[0].message}` }, { status: 400 });
@@ -145,7 +145,7 @@ export async function POST(request: Request) {
     const spareParsed = Papa.parse(spareCsvText, {
       header: true,
       skipEmptyLines: true
-    }) as Papa.ParseResult<Record<string, string>>;
+    }) as unknown as { data: Record<string, string>[]; errors: { message: string }[]; meta: { fields?: string[] } };
 
     if (spareParsed.errors.length) {
       return NextResponse.json({ error: `Spare CSV parse error: ${spareParsed.errors[0].message}` }, { status: 400 });
@@ -166,7 +166,7 @@ export async function POST(request: Request) {
     const cleaningParsed = Papa.parse(cleaningCsvText, {
       header: true,
       skipEmptyLines: true
-    }) as Papa.ParseResult<Record<string, string>>;
+    }) as unknown as { data: Record<string, string>[]; errors: { message: string }[]; meta: { fields?: string[] } };
 
     if (cleaningParsed.errors.length) {
       return NextResponse.json({ error: `Cleaning CSV parse error: ${cleaningParsed.errors[0].message}` }, { status: 400 });
@@ -187,7 +187,7 @@ export async function POST(request: Request) {
     const incidentParsed = Papa.parse(incidentCsvText, {
       header: true,
       skipEmptyLines: true
-    }) as Papa.ParseResult<Record<string, string>>;
+    }) as unknown as { data: Record<string, string>[]; errors: { message: string }[]; meta: { fields?: string[] } };
 
     if (incidentParsed.errors.length) {
       return NextResponse.json({ error: `Incident CSV parse error: ${incidentParsed.errors[0].message}` }, { status: 400 });
@@ -208,7 +208,7 @@ export async function POST(request: Request) {
     const dieselParsed = Papa.parse(dieselCsvText, {
       header: true,
       skipEmptyLines: true
-    }) as Papa.ParseResult<Record<string, string>>;
+    }) as unknown as { data: Record<string, string>[]; errors: { message: string }[]; meta: { fields?: string[] } };
 
     if (dieselParsed.errors.length) {
       return NextResponse.json({ error: `Diesel CSV parse error: ${dieselParsed.errors[0].message}` }, { status: 400 });
@@ -229,7 +229,7 @@ export async function POST(request: Request) {
     const siteLoadMapParsed = Papa.parse(siteLoadMapCsvText, {
       header: true,
       skipEmptyLines: true
-    }) as Papa.ParseResult<Record<string, string>>;
+    }) as unknown as { data: Record<string, string>[]; errors: { message: string }[]; meta: { fields?: string[] } };
 
     if (siteLoadMapParsed.errors.length) {
       return NextResponse.json({ error: `Site AM/Sup load map CSV parse error: ${siteLoadMapParsed.errors[0].message}` }, { status: 400 });
