@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import Papa from 'papaparse';
+import type { ParseResult } from 'papaparse';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { columnMap, requiredOperationSummaryHeaders } from '@/lib/operationSummaryMapping';
 import { cleaningColumnMap, requiredCleaningHeaders } from '@/lib/cleaningMapping';
@@ -121,10 +122,10 @@ export async function POST(request: Request) {
     }
 
     const csvText = await csvResponse.text();
-    const parsed = Papa.parse<Record<string, string>>(csvText, {
+    const parsed = Papa.parse(csvText, {
       header: true,
       skipEmptyLines: true
-    });
+    }) as ParseResult<Record<string, string>>;
 
     if (parsed.errors.length) {
       return NextResponse.json({ error: `CSV parse error: ${parsed.errors[0].message}` }, { status: 400 });
@@ -142,10 +143,10 @@ export async function POST(request: Request) {
     }
 
     const spareCsvText = await spareCsvResponse.text();
-    const spareParsed = Papa.parse<Record<string, string>>(spareCsvText, {
+    const spareParsed = Papa.parse(spareCsvText, {
       header: true,
       skipEmptyLines: true
-    });
+    }) as ParseResult<Record<string, string>>;
 
     if (spareParsed.errors.length) {
       return NextResponse.json({ error: `Spare CSV parse error: ${spareParsed.errors[0].message}` }, { status: 400 });
@@ -163,10 +164,10 @@ export async function POST(request: Request) {
     }
 
     const cleaningCsvText = await cleaningCsvResponse.text();
-    const cleaningParsed = Papa.parse<Record<string, string>>(cleaningCsvText, {
+    const cleaningParsed = Papa.parse(cleaningCsvText, {
       header: true,
       skipEmptyLines: true
-    });
+    }) as ParseResult<Record<string, string>>;
 
     if (cleaningParsed.errors.length) {
       return NextResponse.json({ error: `Cleaning CSV parse error: ${cleaningParsed.errors[0].message}` }, { status: 400 });
@@ -184,10 +185,10 @@ export async function POST(request: Request) {
     }
 
     const incidentCsvText = await incidentCsvResponse.text();
-    const incidentParsed = Papa.parse<Record<string, string>>(incidentCsvText, {
+    const incidentParsed = Papa.parse(incidentCsvText, {
       header: true,
       skipEmptyLines: true
-    });
+    }) as ParseResult<Record<string, string>>;
 
     if (incidentParsed.errors.length) {
       return NextResponse.json({ error: `Incident CSV parse error: ${incidentParsed.errors[0].message}` }, { status: 400 });
@@ -205,10 +206,10 @@ export async function POST(request: Request) {
     }
 
     const dieselCsvText = await dieselCsvResponse.text();
-    const dieselParsed = Papa.parse<Record<string, string>>(dieselCsvText, {
+    const dieselParsed = Papa.parse(dieselCsvText, {
       header: true,
       skipEmptyLines: true
-    });
+    }) as ParseResult<Record<string, string>>;
 
     if (dieselParsed.errors.length) {
       return NextResponse.json({ error: `Diesel CSV parse error: ${dieselParsed.errors[0].message}` }, { status: 400 });
@@ -226,10 +227,10 @@ export async function POST(request: Request) {
     }
 
     const siteLoadMapCsvText = await siteLoadMapCsvResponse.text();
-    const siteLoadMapParsed = Papa.parse<Record<string, string>>(siteLoadMapCsvText, {
+    const siteLoadMapParsed = Papa.parse(siteLoadMapCsvText, {
       header: true,
       skipEmptyLines: true
-    });
+    }) as ParseResult<Record<string, string>>;
 
     if (siteLoadMapParsed.errors.length) {
       return NextResponse.json({ error: `Site AM/Sup load map CSV parse error: ${siteLoadMapParsed.errors[0].message}` }, { status: 400 });
