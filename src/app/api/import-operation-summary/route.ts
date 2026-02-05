@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Papa from 'papaparse';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
 import { columnMap, requiredOperationSummaryHeaders } from '@/lib/operationSummaryMapping';
 import { cleaningColumnMap, requiredCleaningHeaders } from '@/lib/cleaningMapping';
 import { dieselColumnMap, requiredDieselHeaders } from '@/lib/dieselMapping';
@@ -43,6 +43,7 @@ function normalizeHeader(header: string) {
 
 export async function POST(request: Request) {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const body = await request.json();
     const sheetUrl = String(body.sheetUrl ?? '').trim();
     const spareSheetUrl = String(body.spareSheetUrl ?? '').trim();

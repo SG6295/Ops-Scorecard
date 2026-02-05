@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
 
 function parseMonthYear(month: number, year: number) {
   if (!Number.isInteger(month) || month < 1 || month > 12) return null;
@@ -10,6 +10,7 @@ function parseMonthYear(month: number, year: number) {
 
 export async function POST(request: Request) {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const body = await request.json();
     const month = Number(body.month);
     const year = Number(body.year);

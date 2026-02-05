@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
 
 function parseMonthYear(month: string | null, year: string | null) {
   const m = Number(month);
@@ -18,6 +18,7 @@ function extractEmpId(driverName: string | null) {
 
 export async function GET(request: Request) {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const { searchParams } = new URL(request.url);
     const monthValue = parseMonthYear(searchParams.get('month'), searchParams.get('year'));
     if (!monthValue) {
